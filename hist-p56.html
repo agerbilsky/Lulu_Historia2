@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🔴 Mazorca, Federación y Confederación · Historia Lulú</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d1f;--card:#161628;--border:#2a2545;
+  --accent:#a78bfa;--accent2:#f472b6;
+  --correct:#34d399;--wrong:#f87171;
+  --text:#ede9fe;--muted:#8b80a8;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent}
+body{display:flex;flex-direction:column;align-items:center;padding:20px 14px 60px}
+header{text-align:center;margin-bottom:22px;width:100%;max-width:480px}
+.back{display:inline-block;color:var(--accent);font-size:13px;font-weight:600;
+  text-decoration:none;margin-bottom:14px;padding:6px 14px;border-radius:99px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px}
+h1{font-size:clamp(24px,7vw,34px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:8px}
+.tag-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+.tag{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);
+  border-radius:99px;padding:3px 11px;font-size:11px;color:var(--accent);font-weight:600}
+.subtitle{color:var(--muted);font-size:12px;margin-top:4px}
+.pw{width:100%;max-width:480px;margin-bottom:16px}
+.pm{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}
+.pt{height:5px;background:var(--border);border-radius:99px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:99px;transition:width .4s ease}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:22px 18px;width:100%;max-width:480px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.qn{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.qt{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.45;margin-bottom:20px;color:#fff}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{background:transparent;border:1.5px solid var(--border);border-radius:13px;
+  padding:13px 14px;color:var(--text);font-family:inherit;font-size:14px;text-align:left;
+  cursor:pointer;display:flex;align-items:flex-start;gap:11px;line-height:1.45;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:border-color .15s,background .15s;width:100%}
+.opt:active:not(:disabled){background:rgba(255,255,255,0.05)}
+.ol{width:26px;height:26px;min-width:26px;border-radius:50%;background:var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+  transition:background .2s;flex-shrink:0}
+.opt.correct{border-color:var(--correct);background:rgba(52,211,153,.08)}
+.opt.correct .ol{background:var(--correct);color:#0d1f17}
+.opt.wrong{border-color:var(--wrong);background:rgba(248,113,113,.08)}
+.opt.wrong .ol{background:var(--wrong);color:#fff}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:13px;
+  line-height:1.55;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.25);color:#6ee7b7}
+.fb.bad{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.25);color:#fca5a5}
+.bn{margin-top:16px;width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;display:none;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.bn.show{display:block}
+.results{display:none;width:100%;max-width:480px}
+.results.show{display:block}
+.rc{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:36px 18px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.sr{width:110px;height:110px;border-radius:50%;
+  background:conic-gradient(var(--accent) var(--pct,0%),var(--border) 0);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative}
+.sr::before{content:'';width:80px;height:80px;border-radius:50%;
+  background:var(--card);position:absolute}
+.sn{font-size:24px;font-weight:800;position:relative;z-index:1;color:#fff}
+.rc h2{font-size:20px;font-weight:700;margin-bottom:6px;color:#fff}
+.rc>p{color:var(--muted);font-size:13px;margin-bottom:22px}
+.rl{text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.ri{padding:10px 13px;border-radius:10px;font-size:12px;line-height:1.5;border:1px solid}
+.ri.ok{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06)}
+.ri.fail{border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.06)}
+.ri .rlab{font-weight:600;display:block;margin-bottom:2px}
+.ri.ok .rlab{color:#6ee7b7}.ri.fail .rlab{color:#fca5a5}
+.ri .rans{color:var(--muted);font-size:11px}
+.br{width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.br.rev{background:linear-gradient(135deg,var(--wrong),#fb923c);
+  margin-bottom:10px;display:none}
+.br.rev.show{display:block}
+.repaso-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fb923c;background:rgba(251,146,60,.12);
+  border:1px solid rgba(251,146,60,.3);border-radius:99px;padding:3px 10px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html?v=20261101-1" class="back">← Volver al inicio</a>
+  <div class="eyebrow">Historia · Preguntas 5 y 6</div>
+  <h1>🔴 Mazorca, Federación y Confederación</h1>
+  <div class="tag-row"><span class="tag">🕵️ Mazorca</span><span class="tag">🐄 Estancias</span><span class="tag">⚖️ Federación</span></div>
+  <p class="subtitle">12 preguntas · Basado en la guía y el material del profe</p>
+</header>
+<div class="pw">
+  <div class="pm"><span id="pt">Pregunta 1 de 12</span><span id="st">0 correctas</span></div>
+  <div class="pt"><div class="pf" id="pf" style="width:8%"></div></div>
+</div>
+<div class="card" id="qcard">
+  <div class="qn" id="qn">Pregunta 1</div>
+  <div class="qt" id="qt"></div>
+  <div class="opts" id="qo"></div>
+  <div class="fb" id="fb"></div>
+  <button class="bn" id="bn">Siguiente →</button>
+</div>
+<div class="results" id="res">
+  <div class="rc">
+    <div class="sr" id="sr"><span class="sn" id="sf"></span></div>
+    <h2 id="rt"></h2><p id="rs"></p>
+    <div class="rl" id="rl"></div>
+    <button class="br rev" id="brev" onclick="init(FALLIDAS)">🎯 Repasar mis errores</button>
+    <button class="br" id="bfull" onclick="init()">🔁 Intentar de nuevo</button>
+  </div>
+</div>
+<script>
+var Q=[{"q": "¿Qué significa «disciplinar» a la población?", "opts": ["Lograr que la gente obedezca y acepte el orden impuesto", "Enseñar educación física y disciplina deportiva en las escuelas", "Castigar solamente a los soldados que desertaban del ejército", "Reducir el tamaño del ejército para bajar los gastos del Estado"], "ans": 0, "exp": "El rosismo combinó la propaganda con mecanismos de disciplinamiento que afectaron a toda la sociedad."}, {"q": "¿Qué formaba la «maquinaria legal» de control del régimen rosista?", "opts": ["Los jueces de paz y los comisarios", "Los diputados de la Generación del 37", "Los Cabildos y los obispos de cada ciudad", "Los cónsules de Francia y de Inglaterra"], "ans": 0, "exp": "A esa maquinaria legal se sumaba un cuerpo parapolicial, la Mazorca."}, {"q": "¿Qué rol tenían las milicias urbanas y rurales?", "opts": ["Eran tropas extranjeras que Rosas contrataba y les pagaba un sueldo", "Reclutaban gente todo el tiempo, sobre todo de los sectores populares", "Se disolvieron apenas Rosas asumió su segundo gobierno en 1835", "Estaban formadas solo por estancieros ricos que iban por voluntad propia"], "ans": 1, "exp": "El reclutamiento constante también era una forma de controlar a la población."}, {"q": "¿Qué buscaban las «Instrucciones a los mayordomos de estancias» que escribió Rosas en 1819?", "opts": ["Darles a los pueblos indígenas la propiedad de todas sus estancias", "Permitir que los peones criaran sus propios animales y cultivaran", "Terminar con el derecho de «poblarse» en tierra ajena e imponer mano dura", "Repartir tierras gratis entre los peones que trabajaban en la estancia"], "ans": 2, "exp": "Prohibía cazar, cortar leña, criar animales propios y «poblarse». Quería una autoridad inflexible sobre los trabajadores."}, {"q": "¿Por qué Rosas no pudo aplicar esas Instrucciones en sus estancias?", "opts": ["Porque el gobierno de Buenos Aires se lo prohibió por ley", "Porque sus peones eran esclavos que no se podían ir", "Porque los sindicatos rurales le hacían huelgas muy fuertes", "Porque faltaba mano de obra y la gente podía vivir por su cuenta"], "ans": 3, "exp": "Había mucha tierra y poca gente. Los trabajadores eran escasos y caros, y Rosas tuvo que negociar y tolerar a los ocupantes."}, {"q": "¿A qué conclusión llegan Fradkin y Gelman sobre el trabajo en las estancias de Rosas?", "opts": ["Los peones no cobraban salario, solo recibían comida", "El patrón imponía todo sin tener que negociar con nadie", "Rosas vendió sus estancias para dedicarse a la política", "Las condiciones de trabajo se negociaban todo el tiempo"], "ans": 3, "exp": "Aunque no había sindicatos, los sectores populares tenían poder de negociación. Rosas debía respetar sus «costumbres en común» si quería su apoyo."}, {"q": "¿Qué era la Mazorca?", "opts": ["El periódico oficial que publicaba el gobierno de Rosas", "El brazo armado de la Sociedad Popular Restauradora", "El tribunal que juzgaba a los jueces de paz rurales", "Un ejército unitario armado en Montevideo"], "ans": 1, "exp": "Desde 1835 la Mazorca se encargaba de asesinatos y torturas, y casi todos sus miembros eran policías."}, {"q": "¿Quién organizó a los seguidores de Rosas en la Sociedad Popular Restauradora?", "opts": ["Esteban Echeverría, desde el Salón Literario", "Justo José de Urquiza, desde Entre Ríos", "Encarnación Ezcurra, la esposa de Rosas", "Pedro Ferré, el delegado de Corrientes"], "ans": 2, "exp": "Encarnación tuvo un papel político muy activo. La Sociedad se conformó en 1833 y presionaba con violencia a los federales que no respondían a Rosas."}, {"q": "¿Qué relación tenía la Mazorca con el gobierno?", "opts": ["Dependía del gobierno de Santa Fe y no del de Buenos Aires", "La creó la Sala de Representantes por medio de una ley", "Era una oficina del gobierno con presupuesto y sede propios", "Nunca fue oficial, aunque había vínculos probados"], "ans": 3, "exp": "Por eso se la llama «parapolicial»: cometía atrocidades en nombre del gobernador sin un vínculo directo y oficial."}, {"q": "¿Cuál es la diferencia entre una federación y una confederación?", "opts": ["La confederación tiene constitución y gobierno nacional; la federación es una alianza por pactos", "Son sinónimos: las dos palabras quieren decir exactamente lo mismo", "La federación tiene constitución y gobierno nacional; la confederación es una alianza por pactos", "La confederación tiene un rey y la federación tiene un presidente"], "ans": 2, "exp": "En una confederación, cada Estado conserva su soberanía y solo delega algunas cosas, como las relaciones exteriores."}, {"q": "Según Goldman, ¿qué entendían los caudillos por «federalismo»?", "opts": ["Una monarquía con un rey elegido entre todos los caudillos del país", "Una confederación, para perder poco control de su provincia", "Un gobierno central muy fuerte con capital en la ciudad de Buenos Aires", "La unión con el Brasil y el Uruguay en un solo Estado sudamericano"], "ans": 1, "exp": "De ahí la ambivalencia del período: reconocer la soberanía de cada provincia y, a la vez, hablar de una futura organización nacional."}, {"q": "¿Por qué el «derecho de intervención» que usaba Rosas muestra que su gobierno era ambiguo?", "opts": ["Porque es propio de un sistema federal y el Pacto Federal no lo preveía", "Porque lo inventó Urquiza después de la batalla de Caseros", "Porque solo podían usarlo las provincias en contra de Buenos Aires", "Porque era la cláusula más importante que tenía el Pacto Federal"], "ans": 0, "exp": "Rosas decía defender una confederación, pero intervenía en las provincias como si fuera un gobierno federal. No era ni una cosa ni la otra."}];
+var ALL=Q,cur=0,score=0,ans=[],T=Q.length,FALLIDAS=[],repaso=false;
+function init(set){
+  var usar=(set&&set.length)?set:ALL;
+  repaso=usar.length<ALL.length;
+  Q=usar;T=Q.length;cur=0;score=0;ans=[];
+  document.getElementById('qcard').style.display='block';
+  document.getElementById('res').className='results';render()}
+function render(){
+  var q=Q[cur];
+  document.getElementById('qn').innerHTML=(repaso?'<span class="repaso-chip">🎯 Repaso de errores</span><br>':'')+'Pregunta '+(cur+1);
+  document.getElementById('qt').textContent=q.q;
+  document.getElementById('pt').textContent='Pregunta '+(cur+1)+' de '+T;
+  document.getElementById('st').textContent=score+(score!==1?' correctas':' correcta');
+  document.getElementById('pf').style.width=(Math.round((cur/T)*100)+8)+'%';
+  var fb=document.getElementById('fb');fb.className='fb';fb.innerHTML='';
+  document.getElementById('bn').className='bn';
+  var c=document.getElementById('qo');c.innerHTML='';
+  var L=['A','B','C','D'];
+  for(var i=0;i<q.opts.length;i++){(function(idx){
+    var b=document.createElement('button');b.className='opt';
+    b.innerHTML='<span class="ol">'+L[idx]+'</span><span>'+q.opts[idx]+'</span>';
+    b.addEventListener('click',function(){pick(idx)});c.appendChild(b);
+  })(i)}
+}
+function pick(idx){
+  var q=Q[cur];
+  var bs=document.querySelectorAll('.opt');
+  for(var i=0;i<bs.length;i++)bs[i].disabled=true;
+  var ok=idx===q.ans;if(ok)score++;
+  ans.push({q:q.q,chosen:idx,ans:q.ans,ok:ok,opts:q.opts});
+  bs[q.ans].className+=' correct';if(!ok)bs[idx].className+=' wrong';
+  var fb=document.getElementById('fb');
+  fb.innerHTML=ok?'✅ ¡Correcto! '+q.exp:'❌ Incorrecto. La correcta era: '+q.opts[q.ans]+'. '+q.exp;
+  fb.className='fb show '+(ok?'ok':'bad');
+  var bn=document.getElementById('bn');
+  bn.textContent=cur<T-1?'Siguiente →':'Ver resultados 🎉';bn.className='bn show';
+}
+document.getElementById('bn').addEventListener('click',function(){
+  cur++;if(cur<T)render();else showRes();
+});
+function showRes(){
+  document.getElementById('qcard').style.display='none';
+  document.getElementById('res').className='results show';
+  var pct=Math.round((score/T)*100);
+  document.getElementById('sr').style.setProperty('--pct',pct+'%');
+  document.getElementById('sf').textContent=score+'/'+T;
+  var ti,su;
+  if(score===T){ti=repaso?'¡Corregidas! 🌟':'¡Perfecto! 🌟';su=repaso?'Te salieron todas las que antes fallabas.':''+T+'/'+T+'. ¡Lo tenés clavado!'}
+  else if(score>=T*.8){ti='¡Muy bien! 💪';su='Casi todo bien. Repasá las que fallaste.'}
+  else if(score>=T*.6){ti='Bien, podés mejorar 📚';su='Más de la mitad bien. Vale repasar.'}
+  else{ti='A repasar 😅';su='No te preocupes, con otro repaso va a quedar. 💜'}
+  document.getElementById('rt').textContent=ti;document.getElementById('rs').textContent=su;
+  var rl=document.getElementById('rl');rl.innerHTML='';
+  FALLIDAS=[];
+  for(var i=0;i<ans.length;i++){
+    var a=ans[i];if(!a.ok)FALLIDAS.push(Q[i]);
+    var d=document.createElement('div');d.className='ri '+(a.ok?'ok':'fail');
+    var h='<span class="rlab">'+(a.ok?'✅':'❌')+' P'+(i+1)+': '+a.q+'</span>';
+    if(!a.ok)h+='<span class="rans">Tu respuesta: '+a.opts[a.chosen]+' · Correcta: '+a.opts[a.ans]+'</span>';
+    d.innerHTML=h;rl.appendChild(d);
+  }
+  var brev=document.getElementById('brev');
+  if(FALLIDAS.length){brev.className='br rev show';
+    brev.textContent='🎯 Repasar mis errores ('+FALLIDAS.length+')';}
+  else{brev.className='br rev';}
+  document.getElementById('bfull').textContent=repaso?'🔁 Hacer el examen completo':'🔁 Intentar de nuevo';
+  guardar();
+}
+try{var _b=document.querySelector('.back');
+    if(_b)_b.href='index.html?v='+Math.floor(Date.now()/864e5);}catch(e){}
+function guardar(){
+  if(repaso)return;                       // el repaso no cuenta como nota
+  try{
+    var k='lulu:'+location.pathname.split('/').pop().replace('.html','');
+    var p={};try{p=JSON.parse(localStorage.getItem(k))||{}}catch(e){}
+    localStorage.setItem(k,JSON.stringify({
+      total:ALL.length,
+      ultimo:score,
+      mejor:Math.max(p.mejor||0,score),
+      intentos:(p.intentos||0)+1,
+      fecha:new Date().toISOString().slice(0,10)
+    }));
+  }catch(e){}                              // si el navegador lo bloquea, sigue andando igual
+}
+init();
+</script>
+</body>
+</html>

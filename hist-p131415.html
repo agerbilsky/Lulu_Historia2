@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🚂 Positivismo, ferrocarriles e inmigración · Historia Lulú</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d1f;--card:#161628;--border:#2a2545;
+  --accent:#e879f9;--accent2:#a78bfa;
+  --correct:#34d399;--wrong:#f87171;
+  --text:#ede9fe;--muted:#8b80a8;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent}
+body{display:flex;flex-direction:column;align-items:center;padding:20px 14px 60px}
+header{text-align:center;margin-bottom:22px;width:100%;max-width:480px}
+.back{display:inline-block;color:var(--accent);font-size:13px;font-weight:600;
+  text-decoration:none;margin-bottom:14px;padding:6px 14px;border-radius:99px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px}
+h1{font-size:clamp(24px,7vw,34px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:8px}
+.tag-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+.tag{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);
+  border-radius:99px;padding:3px 11px;font-size:11px;color:var(--accent);font-weight:600}
+.subtitle{color:var(--muted);font-size:12px;margin-top:4px}
+.pw{width:100%;max-width:480px;margin-bottom:16px}
+.pm{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}
+.pt{height:5px;background:var(--border);border-radius:99px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:99px;transition:width .4s ease}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:22px 18px;width:100%;max-width:480px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.qn{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.qt{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.45;margin-bottom:20px;color:#fff}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{background:transparent;border:1.5px solid var(--border);border-radius:13px;
+  padding:13px 14px;color:var(--text);font-family:inherit;font-size:14px;text-align:left;
+  cursor:pointer;display:flex;align-items:flex-start;gap:11px;line-height:1.45;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:border-color .15s,background .15s;width:100%}
+.opt:active:not(:disabled){background:rgba(255,255,255,0.05)}
+.ol{width:26px;height:26px;min-width:26px;border-radius:50%;background:var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+  transition:background .2s;flex-shrink:0}
+.opt.correct{border-color:var(--correct);background:rgba(52,211,153,.08)}
+.opt.correct .ol{background:var(--correct);color:#0d1f17}
+.opt.wrong{border-color:var(--wrong);background:rgba(248,113,113,.08)}
+.opt.wrong .ol{background:var(--wrong);color:#fff}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:13px;
+  line-height:1.55;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.25);color:#6ee7b7}
+.fb.bad{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.25);color:#fca5a5}
+.bn{margin-top:16px;width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;display:none;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.bn.show{display:block}
+.results{display:none;width:100%;max-width:480px}
+.results.show{display:block}
+.rc{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:36px 18px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.sr{width:110px;height:110px;border-radius:50%;
+  background:conic-gradient(var(--accent) var(--pct,0%),var(--border) 0);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative}
+.sr::before{content:'';width:80px;height:80px;border-radius:50%;
+  background:var(--card);position:absolute}
+.sn{font-size:24px;font-weight:800;position:relative;z-index:1;color:#fff}
+.rc h2{font-size:20px;font-weight:700;margin-bottom:6px;color:#fff}
+.rc>p{color:var(--muted);font-size:13px;margin-bottom:22px}
+.rl{text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.ri{padding:10px 13px;border-radius:10px;font-size:12px;line-height:1.5;border:1px solid}
+.ri.ok{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06)}
+.ri.fail{border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.06)}
+.ri .rlab{font-weight:600;display:block;margin-bottom:2px}
+.ri.ok .rlab{color:#6ee7b7}.ri.fail .rlab{color:#fca5a5}
+.ri .rans{color:var(--muted);font-size:11px}
+.br{width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.br.rev{background:linear-gradient(135deg,var(--wrong),#fb923c);
+  margin-bottom:10px;display:none}
+.br.rev.show{display:block}
+.repaso-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fb923c;background:rgba(251,146,60,.12);
+  border:1px solid rgba(251,146,60,.3);border-radius:99px;padding:3px 10px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html?v=20261101-1" class="back">← Volver al inicio</a>
+  <div class="eyebrow">Historia · Preguntas 13, 14 y 15</div>
+  <h1>🚂 Positivismo, ferrocarriles e inmigración</h1>
+  <div class="tag-row"><span class="tag">🔬 Positivismo</span><span class="tag">🚂 Trenes</span><span class="tag">🚢 Inmigración</span></div>
+  <p class="subtitle">12 preguntas · Basado en la guía y el material del profe</p>
+</header>
+<div class="pw">
+  <div class="pm"><span id="pt">Pregunta 1 de 12</span><span id="st">0 correctas</span></div>
+  <div class="pt"><div class="pf" id="pf" style="width:8%"></div></div>
+</div>
+<div class="card" id="qcard">
+  <div class="qn" id="qn">Pregunta 1</div>
+  <div class="qt" id="qt"></div>
+  <div class="opts" id="qo"></div>
+  <div class="fb" id="fb"></div>
+  <button class="bn" id="bn">Siguiente →</button>
+</div>
+<div class="results" id="res">
+  <div class="rc">
+    <div class="sr" id="sr"><span class="sn" id="sf"></span></div>
+    <h2 id="rt"></h2><p id="rs"></p>
+    <div class="rl" id="rl"></div>
+    <button class="br rev" id="brev" onclick="init(FALLIDAS)">🎯 Repasar mis errores</button>
+    <button class="br" id="bfull" onclick="init()">🔁 Intentar de nuevo</button>
+  </div>
+</div>
+<script>
+var Q=[{"q": "¿Qué ideas centrales tenía el positivismo?", "opts": ["Respetar por igual a todas las culturas y a todas sus tradiciones", "Volver al orden colonial y devolverle todo el poder al rey de España", "Rechazar la ciencia y defender las costumbres del campo", "Ciencia, «orden y progreso» y civilización contra barbarie"], "ans": 3, "exp": "Creía que la historia avanzaba en línea recta hacia la «civilización». Para esas ideas, los europeos eran los «civilizados»."}, {"q": "¿Por qué se llamaba «desierto» a la Patagonia y a la región pampeana?", "opts": ["Porque así lo llamaban los propios pueblos originarios", "Porque eran zonas sin agua en las que nadie podía vivir", "Porque se mostraba vacío un territorio que estaba habitado", "Porque era el nombre oficial de una provincia del sur"], "ans": 2, "exp": "Se llamaba «desierto» al territorio que estaba fuera del control del Estado. Se negaba que esos pueblos contaran."}, {"q": "¿Cómo hablaba de los indígenas el diario «La Patagonia» de Viedma, en 1883?", "opts": ["De «soldados valientes» que habían peleado en el Paraguay", "De «indios arrancados a la barbarie» para «civilizarlos»", "De «hermanos de la tierra» con quienes había que firmar la paz", "De «dueños legítimos» de la Patagonia que debían ser respetados"], "ans": 1, "exp": "Ese lenguaje muestra cómo las ideas positivistas justificaban la campaña."}, {"q": "¿Qué le pasó al cacique Inakayal?", "opts": ["Vivió cautivo en el Museo de La Plata y lo «estudiaron»", "Fundó el diario «La Patagonia» en la ciudad de Viedma", "Firmó la paz con Roca y fue nombrado gobernador de la Patagonia", "Fue elegido diputado por Río Negro en el Congreso de la Nación"], "ans": 0, "exp": "Él y su familia pasaron sus últimos años como cautivos en el museo. Su cuerpo fue restituido en 1994."}, {"q": "¿Quiénes impulsaron la construcción de los ferrocarriles?", "opts": ["Los inmigrantes italianos, con sus propios ahorros", "Las provincias del interior, con sus propias aduanas", "El Estado y, sobre todo, los inversores ingleses", "Los Estados Unidos y Francia, en partes iguales"], "ans": 2, "exp": "Gran Bretaña fue el principal inversor en la Argentina de esa época."}, {"q": "¿Cuál fue el primer ferrocarril del país?", "opts": ["El Ferrocarril Oeste, con sus primeros 10 km en 1857", "El Trasandino, que unía Mendoza y Santiago de Chile en 1810", "El Central Argentino, que unía Rosario y Córdoba en 1830", "El Ferrocarril del Sud, que llegó a Bahía Blanca en 1852"], "ans": 0, "exp": "Las obras empezaron en 1855, con técnicos y materiales traídos de Europa. Hacia 1890 llegaba al sur de Mendoza."}, {"q": "¿Cuál fue la principal característica de la red ferroviaria?", "opts": ["Llegaba sobre todo a Chile y a Bolivia, para comerciar con el Pacífico", "Su centralización: las vías iban hacia el puerto de Buenos Aires para exportar", "Se concentraba casi entera en el sur, en la región de la Patagonia", "Unía todas las capitales provinciales entre sí, sin pasar por Buenos Aires"], "ans": 1, "exp": "La red tenía forma de abanico. No buscaba unir a las provincias entre sí, sino llevar los productos al puerto."}, {"q": "¿Cómo le fue a Santiago del Estero con la llegada del tren?", "opts": ["Se convirtió en el principal puerto de exportación del país", "Fue la más beneficiada, porque empezó a exportar azúcar a Europa", "La perjudicó: lo importado barato destruyó sus manufacturas", "Nunca le llegó el tren, así que todo siguió igual que antes"], "ans": 2, "exp": "A Tucumán, en cambio, el tren le sirvió para vender su azúcar en la región pampeana."}, {"q": "¿Qué decía la Constitución de 1853 sobre la inmigración?", "opts": ["Que se expulsaría a los inmigrantes sin tierras", "Que solo se aceptaban inmigrantes americanos", "Que estaba prohibida la entrada de extranjeros", "Que había que fomentar la inmigración europea"], "ans": 3, "exp": "La Constitución ya marcaba el rumbo: fomentar la inmigración para poblar el país y hacerlo prosperar."}, {"q": "¿Cómo se llamaba la ley de 1876 que organizó la llegada de inmigrantes?", "opts": ["Ley de Federalización de Buenos Aires", "Ley de Residencia para expulsar extranjeros", "Ley 1420 de Educación Común y obligatoria", "Ley de Inmigración y Colonización (Ley Avellaneda)"], "ans": 3, "exp": "Ayudaba con los pasajes, el alojamiento al llegar, la búsqueda de trabajo y las colonias agrícolas."}, {"q": "¿Por qué muchos inmigrantes se quedaron a vivir en las ciudades?", "opts": ["Porque la tierra ya estaba en manos de grandes terratenientes", "Porque una ley les prohibía a los extranjeros vivir en el campo", "Porque el gobierno les regalaba casas en Buenos Aires", "Porque llegaban sin saber trabajar en ningún oficio"], "ans": 0, "exp": "Muchos vivieron en conventillos y trabajaron como obreros, artesanos o comerciantes."}, {"q": "¿Qué estableció la Ley 1420 de 1884?", "opts": ["Escuelas en idioma italiano para todos los hijos de inmigrantes", "Primaria obligatoria, gratuita y laica, para una identidad común", "Escuelas religiosas pagas, una en cada provincia del país", "Universidad gratuita, pero solamente para los varones"], "ans": 1, "exp": "La escuela enseñaba el idioma, la historia nacional, los próceres y los símbolos patrios, para «argentinizar» a los hijos de los inmigrantes."}];
+var ALL=Q,cur=0,score=0,ans=[],T=Q.length,FALLIDAS=[],repaso=false;
+function init(set){
+  var usar=(set&&set.length)?set:ALL;
+  repaso=usar.length<ALL.length;
+  Q=usar;T=Q.length;cur=0;score=0;ans=[];
+  document.getElementById('qcard').style.display='block';
+  document.getElementById('res').className='results';render()}
+function render(){
+  var q=Q[cur];
+  document.getElementById('qn').innerHTML=(repaso?'<span class="repaso-chip">🎯 Repaso de errores</span><br>':'')+'Pregunta '+(cur+1);
+  document.getElementById('qt').textContent=q.q;
+  document.getElementById('pt').textContent='Pregunta '+(cur+1)+' de '+T;
+  document.getElementById('st').textContent=score+(score!==1?' correctas':' correcta');
+  document.getElementById('pf').style.width=(Math.round((cur/T)*100)+8)+'%';
+  var fb=document.getElementById('fb');fb.className='fb';fb.innerHTML='';
+  document.getElementById('bn').className='bn';
+  var c=document.getElementById('qo');c.innerHTML='';
+  var L=['A','B','C','D'];
+  for(var i=0;i<q.opts.length;i++){(function(idx){
+    var b=document.createElement('button');b.className='opt';
+    b.innerHTML='<span class="ol">'+L[idx]+'</span><span>'+q.opts[idx]+'</span>';
+    b.addEventListener('click',function(){pick(idx)});c.appendChild(b);
+  })(i)}
+}
+function pick(idx){
+  var q=Q[cur];
+  var bs=document.querySelectorAll('.opt');
+  for(var i=0;i<bs.length;i++)bs[i].disabled=true;
+  var ok=idx===q.ans;if(ok)score++;
+  ans.push({q:q.q,chosen:idx,ans:q.ans,ok:ok,opts:q.opts});
+  bs[q.ans].className+=' correct';if(!ok)bs[idx].className+=' wrong';
+  var fb=document.getElementById('fb');
+  fb.innerHTML=ok?'✅ ¡Correcto! '+q.exp:'❌ Incorrecto. La correcta era: '+q.opts[q.ans]+'. '+q.exp;
+  fb.className='fb show '+(ok?'ok':'bad');
+  var bn=document.getElementById('bn');
+  bn.textContent=cur<T-1?'Siguiente →':'Ver resultados 🎉';bn.className='bn show';
+}
+document.getElementById('bn').addEventListener('click',function(){
+  cur++;if(cur<T)render();else showRes();
+});
+function showRes(){
+  document.getElementById('qcard').style.display='none';
+  document.getElementById('res').className='results show';
+  var pct=Math.round((score/T)*100);
+  document.getElementById('sr').style.setProperty('--pct',pct+'%');
+  document.getElementById('sf').textContent=score+'/'+T;
+  var ti,su;
+  if(score===T){ti=repaso?'¡Corregidas! 🌟':'¡Perfecto! 🌟';su=repaso?'Te salieron todas las que antes fallabas.':''+T+'/'+T+'. ¡Lo tenés clavado!'}
+  else if(score>=T*.8){ti='¡Muy bien! 💪';su='Casi todo bien. Repasá las que fallaste.'}
+  else if(score>=T*.6){ti='Bien, podés mejorar 📚';su='Más de la mitad bien. Vale repasar.'}
+  else{ti='A repasar 😅';su='No te preocupes, con otro repaso va a quedar. 💜'}
+  document.getElementById('rt').textContent=ti;document.getElementById('rs').textContent=su;
+  var rl=document.getElementById('rl');rl.innerHTML='';
+  FALLIDAS=[];
+  for(var i=0;i<ans.length;i++){
+    var a=ans[i];if(!a.ok)FALLIDAS.push(Q[i]);
+    var d=document.createElement('div');d.className='ri '+(a.ok?'ok':'fail');
+    var h='<span class="rlab">'+(a.ok?'✅':'❌')+' P'+(i+1)+': '+a.q+'</span>';
+    if(!a.ok)h+='<span class="rans">Tu respuesta: '+a.opts[a.chosen]+' · Correcta: '+a.opts[a.ans]+'</span>';
+    d.innerHTML=h;rl.appendChild(d);
+  }
+  var brev=document.getElementById('brev');
+  if(FALLIDAS.length){brev.className='br rev show';
+    brev.textContent='🎯 Repasar mis errores ('+FALLIDAS.length+')';}
+  else{brev.className='br rev';}
+  document.getElementById('bfull').textContent=repaso?'🔁 Hacer el examen completo':'🔁 Intentar de nuevo';
+  guardar();
+}
+try{var _b=document.querySelector('.back');
+    if(_b)_b.href='index.html?v='+Math.floor(Date.now()/864e5);}catch(e){}
+function guardar(){
+  if(repaso)return;                       // el repaso no cuenta como nota
+  try{
+    var k='lulu:'+location.pathname.split('/').pop().replace('.html','');
+    var p={};try{p=JSON.parse(localStorage.getItem(k))||{}}catch(e){}
+    localStorage.setItem(k,JSON.stringify({
+      total:ALL.length,
+      ultimo:score,
+      mejor:Math.max(p.mejor||0,score),
+      intentos:(p.intentos||0)+1,
+      fecha:new Date().toISOString().slice(0,10)
+    }));
+  }catch(e){}                              // si el navegador lo bloquea, sigue andando igual
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🏁 Integrador 2 · Historia Lulú</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d1f;--card:#161628;--border:#2a2545;
+  --accent:#fbbf24;--accent2:#f97316;
+  --correct:#34d399;--wrong:#f87171;
+  --text:#ede9fe;--muted:#8b80a8;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent}
+body{display:flex;flex-direction:column;align-items:center;padding:20px 14px 60px}
+header{text-align:center;margin-bottom:22px;width:100%;max-width:480px}
+.back{display:inline-block;color:var(--accent);font-size:13px;font-weight:600;
+  text-decoration:none;margin-bottom:14px;padding:6px 14px;border-radius:99px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px}
+h1{font-size:clamp(24px,7vw,34px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:8px}
+.tag-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+.tag{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);
+  border-radius:99px;padding:3px 11px;font-size:11px;color:var(--accent);font-weight:600}
+.subtitle{color:var(--muted);font-size:12px;margin-top:4px}
+.pw{width:100%;max-width:480px;margin-bottom:16px}
+.pm{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}
+.pt{height:5px;background:var(--border);border-radius:99px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:99px;transition:width .4s ease}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:22px 18px;width:100%;max-width:480px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.qn{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.qt{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.45;margin-bottom:20px;color:#fff}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{background:transparent;border:1.5px solid var(--border);border-radius:13px;
+  padding:13px 14px;color:var(--text);font-family:inherit;font-size:14px;text-align:left;
+  cursor:pointer;display:flex;align-items:flex-start;gap:11px;line-height:1.45;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:border-color .15s,background .15s;width:100%}
+.opt:active:not(:disabled){background:rgba(255,255,255,0.05)}
+.ol{width:26px;height:26px;min-width:26px;border-radius:50%;background:var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+  transition:background .2s;flex-shrink:0}
+.opt.correct{border-color:var(--correct);background:rgba(52,211,153,.08)}
+.opt.correct .ol{background:var(--correct);color:#0d1f17}
+.opt.wrong{border-color:var(--wrong);background:rgba(248,113,113,.08)}
+.opt.wrong .ol{background:var(--wrong);color:#fff}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:13px;
+  line-height:1.55;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.25);color:#6ee7b7}
+.fb.bad{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.25);color:#fca5a5}
+.bn{margin-top:16px;width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;display:none;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.bn.show{display:block}
+.results{display:none;width:100%;max-width:480px}
+.results.show{display:block}
+.rc{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:36px 18px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.sr{width:110px;height:110px;border-radius:50%;
+  background:conic-gradient(var(--accent) var(--pct,0%),var(--border) 0);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative}
+.sr::before{content:'';width:80px;height:80px;border-radius:50%;
+  background:var(--card);position:absolute}
+.sn{font-size:24px;font-weight:800;position:relative;z-index:1;color:#fff}
+.rc h2{font-size:20px;font-weight:700;margin-bottom:6px;color:#fff}
+.rc>p{color:var(--muted);font-size:13px;margin-bottom:22px}
+.rl{text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.ri{padding:10px 13px;border-radius:10px;font-size:12px;line-height:1.5;border:1px solid}
+.ri.ok{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06)}
+.ri.fail{border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.06)}
+.ri .rlab{font-weight:600;display:block;margin-bottom:2px}
+.ri.ok .rlab{color:#6ee7b7}.ri.fail .rlab{color:#fca5a5}
+.ri .rans{color:var(--muted);font-size:11px}
+.br{width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.br.rev{background:linear-gradient(135deg,var(--wrong),#fb923c);
+  margin-bottom:10px;display:none}
+.br.rev.show{display:block}
+.repaso-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fb923c;background:rgba(251,146,60,.12);
+  border:1px solid rgba(251,146,60,.3);border-radius:99px;padding:3px 10px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html?v=20261101-1" class="back">← Volver al inicio</a>
+  <div class="eyebrow">Historia · Integrador · Las 15 preguntas</div>
+  <h1>🏁 Integrador 2</h1>
+  <div class="tag-row"><span class="tag">📚 Preguntas 1 a 15</span><span class="tag">🎯 Tipo prueba</span></div>
+  <p class="subtitle">20 preguntas · Basado en la guía y el material del profe</p>
+</header>
+<div class="pw">
+  <div class="pm"><span id="pt">Pregunta 1 de 20</span><span id="st">0 correctas</span></div>
+  <div class="pt"><div class="pf" id="pf" style="width:8%"></div></div>
+</div>
+<div class="card" id="qcard">
+  <div class="qn" id="qn">Pregunta 1</div>
+  <div class="qt" id="qt"></div>
+  <div class="opts" id="qo"></div>
+  <div class="fb" id="fb"></div>
+  <button class="bn" id="bn">Siguiente →</button>
+</div>
+<div class="results" id="res">
+  <div class="rc">
+    <div class="sr" id="sr"><span class="sn" id="sf"></span></div>
+    <h2 id="rt"></h2><p id="rs"></p>
+    <div class="rl" id="rl"></div>
+    <button class="br rev" id="brev" onclick="init(FALLIDAS)">🎯 Repasar mis errores</button>
+    <button class="br" id="bfull" onclick="init()">🔁 Intentar de nuevo</button>
+  </div>
+</div>
+<script>
+var Q=[{"q": "¿Qué provincias intentó reunir Francisco Ramírez en la «República de Entre Ríos»?", "opts": ["Buenos Aires, Santa Fe y Córdoba", "Tucumán, Catamarca y Santiago del Estero", "Mendoza, San Juan y San Luis", "Entre Ríos, Corrientes y Misiones"], "ans": 3, "exp": "Lo intentó entre 1820 y 1821, y no tuvo éxito."}, {"q": "¿Quién gobernó Córdoba en los años veinte, con una Constitución de 1821 que le daba mucho poder?", "opts": ["Estanislao López", "José María Paz", "Bernabé Aráoz", "Juan Bautista Bustos"], "ans": 3, "exp": "Paz lo destituyó cuando volvió de la guerra con el Brasil, y así empezó el conflicto con Quiroga."}, {"q": "¿Quién fue el delegado de Corrientes que discutió con Buenos Aires en 1831?", "opts": ["Facundo Quiroga", "Justo José de Urquiza", "Pedro Ferré", "Estanislao López"], "ans": 2, "exp": "Había sido gobernador de Corrientes y quería acelerar la organización nacional."}, {"q": "Según el Pacto Federal, ¿qué iba a manejar la Comisión Representativa?", "opts": ["La Aduana y la emisión de moneda nacional", "Las relaciones exteriores, la guerra y la paz", "La elección de los gobernadores provinciales", "La educación y la salud de todas las provincias"], "ans": 1, "exp": "También tenía que convocar al futuro Congreso Constituyente. Pero nunca llegó a funcionar."}, {"q": "¿Desde qué año fue obligatorio usar la divisa punzó?", "opts": ["Desde 1880", "Desde 1810", "Desde 1832", "Desde 1853"], "ans": 2, "exp": "Era uno de los signos de adhesión al régimen, junto con la vestimenta federal."}, {"q": "¿Qué pasó con el Salón Literario de Marcos Sastre?", "opts": ["Funcionó libremente durante todo el gobierno de Rosas", "Se convirtió en la sede de la Sociedad Popular Restauradora", "Fue el lugar donde se firmó el Pacto Federal de 1831", "Lo clausuraron en 1838 y sus miembros tuvieron que exiliarse"], "ans": 3, "exp": "Desde el exilio, la Generación del 37 hizo propaganda antirrosista y pensó un nuevo proyecto de nación."}, {"q": "Según el material, ¿quiénes estaban detrás de la negativa de Rosas a dictar una constitución?", "opts": ["Los caudillos del interior, que querían una constitución unitaria", "Los pueblos originarios, que rechazaban las leyes escritas", "Los sectores poderosos de Buenos Aires, para no perder el puerto", "Los inmigrantes europeos, que preferían la monarquía"], "ans": 2, "exp": "Querían conservar la exclusividad del puerto y de los ingresos de la Aduana."}, {"q": "¿Quiénes integraban la Mazorca?", "opts": ["Eran soldados brasileños contratados por Rosas", "Casi todos sus miembros eran parte de la policía", "Eran exiliados unitarios que volvían a escondidas", "Eran sacerdotes enviados por la Iglesia"], "ans": 1, "exp": "Por eso la represión mezclaba una parte legal y una parapolicial."}, {"q": "Aunque eran autónomas, ¿qué mencionaban las constituciones provinciales de la época?", "opts": ["Su independencia total y para siempre", "Una futura «República Argentina» o «Estado Argentino»", "El regreso al dominio del rey de España y sus leyes", "Su incorporación definitiva al Imperio del Brasil"], "ans": 1, "exp": "Goldman muestra esa ambivalencia: soberanía de cada provincia, pero con la idea de una futura nación."}, {"q": "¿Quién fue nombrado gobernador provisorio de Buenos Aires después de Caseros?", "opts": ["Bartolomé Mitre", "Juan Manuel de Rosas", "Vicente López y Planes", "Domingo F. Sarmiento"], "ans": 2, "exp": "Urquiza lo eligió porque tenía mucho prestigio en su provincia, aunque había sido funcionario durante el rosismo."}, {"q": "¿Qué puerto promovió la Confederación para competir con el de Buenos Aires?", "opts": ["El de Rosario", "El de Montevideo", "El de Bahía Blanca", "El de Corrientes"], "ans": 0, "exp": "Igual no alcanzó: Buenos Aires seguía manejando los ingresos de la Aduana."}, {"q": "¿A qué le puso fin la batalla de Pavón, según el material?", "opts": ["A la conquista de la Patagonia", "Al régimen oligárquico del PAN y del fraude", "A la Guerra del Paraguay y sus levas", "A cuatro décadas de fragmentación política"], "ans": 3, "exp": "Desde 1820 el país había estado dividido. Con Pavón quedó unificado bajo el liderazgo de Buenos Aires."}, {"q": "¿Qué caudillo liberal designaron Santiago del Estero, Catamarca y Tucumán para perseguir a las montoneras?", "opts": ["Felipe Varela", "Francisco Clavero", "Manuel Taboada", "Severo Chumbita"], "ans": 2, "exp": "Fue la reacción inmediata de los liberales ante los levantamientos federales."}, {"q": "¿Qué partido uruguayo contaba con el apoyo del Brasil antes de la guerra?", "opts": ["El Partido Colorado", "El Partido Blanco", "El Partido Federal", "El Partido Unitario"], "ans": 0, "exp": "Los colorados, con apoyo brasileño, enfrentaban al gobierno blanco, que pidió ayuda al Paraguay."}, {"q": "¿Qué pasó con el patrimonio cultural del Paraguay en la guerra?", "opts": ["Quedó intacto, porque la guerra no llegó a su territorio", "Sus archivos, bibliotecas y monumentos fueron arrasados", "Fue trasladado completo y protegido en el Museo de La Plata", "Fue comprado por el gobierno de Gran Bretaña"], "ans": 1, "exp": "Junto con la población y la economía, también se perdieron los lugares de memoria colectiva."}, {"q": "¿Qué hicieron las Iglesias católica y anglicana con las poblaciones originarias?", "opts": ["Instalaron misiones e internados para «civilizarlas»", "Las ayudaron a recuperar sus tierras ante la justicia", "Se negaron a tener cualquier contacto con ellas", "Las defendieron con armas frente al ejército de Roca"], "ans": 0, "exp": "La orden salesiana instaló centros misioneros en lugares estratégicos. Muchos nativos, acorralados, terminaban llegando a esos internados."}, {"q": "¿Por qué la región pampeana tenía ventaja para producir para la exportación?", "opts": ["Por sus suelos fértiles y su cercanía al puerto", "Porque tenía las minas de cobre más grandes del país", "Porque estaba aislada del comercio con Europa", "Porque tenía clima tropical, ideal para el café"], "ans": 0, "exp": "Las demás regiones, en cambio, empeoraron su situación al llegar las manufacturas extranjeras."}, {"q": "¿Qué opinaba en 1883 el diario «La Patagonia» sobre las promesas de sometimiento de Inakayal?", "opts": ["Que eran sinceras y había que firmar la paz", "Que desconfiaba de ellas y las consideraba falsas", "Que no le interesaba lo que pasaba en el sur", "Que Inakayal debía ser nombrado gobernador"], "ans": 1, "exp": "El diario lo trataba de «salvaje» que solo cumplía cuando no tenía otra opción. Es un buen ejemplo del discurso de la época."}, {"q": "¿Hasta dónde llegaba el Ferrocarril Oeste hacia 1890?", "opts": ["Hasta el sur de la provincia de Mendoza", "Solo hasta el barrio de Flores", "Hasta la ciudad de Asunción del Paraguay", "Hasta Ushuaia, en Tierra del Fuego"], "ans": 0, "exp": "Había empezado con apenas 10 km en 1857."}, {"q": "¿Qué enseñaba la escuela de la Ley 1420 para «argentinizar» a los hijos de inmigrantes?", "opts": ["El idioma de cada familia y la historia de su país de origen", "Solo matemática y oficios, sin contenidos de historia", "Religión obligatoria y latín en todos los grados", "El idioma, la historia nacional, los próceres y los símbolos"], "ans": 3, "exp": "El objetivo era construir una identidad común en una sociedad llena de inmigrantes."}];
+var ALL=Q,cur=0,score=0,ans=[],T=Q.length,FALLIDAS=[],repaso=false;
+function init(set){
+  var usar=(set&&set.length)?set:ALL;
+  repaso=usar.length<ALL.length;
+  Q=usar;T=Q.length;cur=0;score=0;ans=[];
+  document.getElementById('qcard').style.display='block';
+  document.getElementById('res').className='results';render()}
+function render(){
+  var q=Q[cur];
+  document.getElementById('qn').innerHTML=(repaso?'<span class="repaso-chip">🎯 Repaso de errores</span><br>':'')+'Pregunta '+(cur+1);
+  document.getElementById('qt').textContent=q.q;
+  document.getElementById('pt').textContent='Pregunta '+(cur+1)+' de '+T;
+  document.getElementById('st').textContent=score+(score!==1?' correctas':' correcta');
+  document.getElementById('pf').style.width=(Math.round((cur/T)*100)+8)+'%';
+  var fb=document.getElementById('fb');fb.className='fb';fb.innerHTML='';
+  document.getElementById('bn').className='bn';
+  var c=document.getElementById('qo');c.innerHTML='';
+  var L=['A','B','C','D'];
+  for(var i=0;i<q.opts.length;i++){(function(idx){
+    var b=document.createElement('button');b.className='opt';
+    b.innerHTML='<span class="ol">'+L[idx]+'</span><span>'+q.opts[idx]+'</span>';
+    b.addEventListener('click',function(){pick(idx)});c.appendChild(b);
+  })(i)}
+}
+function pick(idx){
+  var q=Q[cur];
+  var bs=document.querySelectorAll('.opt');
+  for(var i=0;i<bs.length;i++)bs[i].disabled=true;
+  var ok=idx===q.ans;if(ok)score++;
+  ans.push({q:q.q,chosen:idx,ans:q.ans,ok:ok,opts:q.opts});
+  bs[q.ans].className+=' correct';if(!ok)bs[idx].className+=' wrong';
+  var fb=document.getElementById('fb');
+  fb.innerHTML=ok?'✅ ¡Correcto! '+q.exp:'❌ Incorrecto. La correcta era: '+q.opts[q.ans]+'. '+q.exp;
+  fb.className='fb show '+(ok?'ok':'bad');
+  var bn=document.getElementById('bn');
+  bn.textContent=cur<T-1?'Siguiente →':'Ver resultados 🎉';bn.className='bn show';
+}
+document.getElementById('bn').addEventListener('click',function(){
+  cur++;if(cur<T)render();else showRes();
+});
+function showRes(){
+  document.getElementById('qcard').style.display='none';
+  document.getElementById('res').className='results show';
+  var pct=Math.round((score/T)*100);
+  document.getElementById('sr').style.setProperty('--pct',pct+'%');
+  document.getElementById('sf').textContent=score+'/'+T;
+  var ti,su;
+  if(score===T){ti=repaso?'¡Corregidas! 🌟':'¡Perfecto! 🌟';su=repaso?'Te salieron todas las que antes fallabas.':''+T+'/'+T+'. ¡Lo tenés clavado!'}
+  else if(score>=T*.8){ti='¡Muy bien! 💪';su='Casi todo bien. Repasá las que fallaste.'}
+  else if(score>=T*.6){ti='Bien, podés mejorar 📚';su='Más de la mitad bien. Vale repasar.'}
+  else{ti='A repasar 😅';su='No te preocupes, con otro repaso va a quedar. 💜'}
+  document.getElementById('rt').textContent=ti;document.getElementById('rs').textContent=su;
+  var rl=document.getElementById('rl');rl.innerHTML='';
+  FALLIDAS=[];
+  for(var i=0;i<ans.length;i++){
+    var a=ans[i];if(!a.ok)FALLIDAS.push(Q[i]);
+    var d=document.createElement('div');d.className='ri '+(a.ok?'ok':'fail');
+    var h='<span class="rlab">'+(a.ok?'✅':'❌')+' P'+(i+1)+': '+a.q+'</span>';
+    if(!a.ok)h+='<span class="rans">Tu respuesta: '+a.opts[a.chosen]+' · Correcta: '+a.opts[a.ans]+'</span>';
+    d.innerHTML=h;rl.appendChild(d);
+  }
+  var brev=document.getElementById('brev');
+  if(FALLIDAS.length){brev.className='br rev show';
+    brev.textContent='🎯 Repasar mis errores ('+FALLIDAS.length+')';}
+  else{brev.className='br rev';}
+  document.getElementById('bfull').textContent=repaso?'🔁 Hacer el examen completo':'🔁 Intentar de nuevo';
+  guardar();
+}
+try{var _b=document.querySelector('.back');
+    if(_b)_b.href='index.html?v='+Math.floor(Date.now()/864e5);}catch(e){}
+function guardar(){
+  if(repaso)return;                       // el repaso no cuenta como nota
+  try{
+    var k='lulu:'+location.pathname.split('/').pop().replace('.html','');
+    var p={};try{p=JSON.parse(localStorage.getItem(k))||{}}catch(e){}
+    localStorage.setItem(k,JSON.stringify({
+      total:ALL.length,
+      ultimo:score,
+      mejor:Math.max(p.mejor||0,score),
+      intentos:(p.intentos||0)+1,
+      fecha:new Date().toISOString().slice(0,10)
+    }));
+  }catch(e){}                              // si el navegador lo bloquea, sigue andando igual
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🧩 Autonomías, Pacto Federal y Rosas · Historia Lulú</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d1f;--card:#161628;--border:#2a2545;
+  --accent:#38bdf8;--accent2:#818cf8;
+  --correct:#34d399;--wrong:#f87171;
+  --text:#ede9fe;--muted:#8b80a8;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent}
+body{display:flex;flex-direction:column;align-items:center;padding:20px 14px 60px}
+header{text-align:center;margin-bottom:22px;width:100%;max-width:480px}
+.back{display:inline-block;color:var(--accent);font-size:13px;font-weight:600;
+  text-decoration:none;margin-bottom:14px;padding:6px 14px;border-radius:99px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px}
+h1{font-size:clamp(24px,7vw,34px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:8px}
+.tag-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+.tag{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);
+  border-radius:99px;padding:3px 11px;font-size:11px;color:var(--accent);font-weight:600}
+.subtitle{color:var(--muted);font-size:12px;margin-top:4px}
+.pw{width:100%;max-width:480px;margin-bottom:16px}
+.pm{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}
+.pt{height:5px;background:var(--border);border-radius:99px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:99px;transition:width .4s ease}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:22px 18px;width:100%;max-width:480px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.qn{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.qt{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.45;margin-bottom:20px;color:#fff}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{background:transparent;border:1.5px solid var(--border);border-radius:13px;
+  padding:13px 14px;color:var(--text);font-family:inherit;font-size:14px;text-align:left;
+  cursor:pointer;display:flex;align-items:flex-start;gap:11px;line-height:1.45;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:border-color .15s,background .15s;width:100%}
+.opt:active:not(:disabled){background:rgba(255,255,255,0.05)}
+.ol{width:26px;height:26px;min-width:26px;border-radius:50%;background:var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+  transition:background .2s;flex-shrink:0}
+.opt.correct{border-color:var(--correct);background:rgba(52,211,153,.08)}
+.opt.correct .ol{background:var(--correct);color:#0d1f17}
+.opt.wrong{border-color:var(--wrong);background:rgba(248,113,113,.08)}
+.opt.wrong .ol{background:var(--wrong);color:#fff}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:13px;
+  line-height:1.55;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.25);color:#6ee7b7}
+.fb.bad{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.25);color:#fca5a5}
+.bn{margin-top:16px;width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;display:none;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.bn.show{display:block}
+.results{display:none;width:100%;max-width:480px}
+.results.show{display:block}
+.rc{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:36px 18px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.sr{width:110px;height:110px;border-radius:50%;
+  background:conic-gradient(var(--accent) var(--pct,0%),var(--border) 0);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative}
+.sr::before{content:'';width:80px;height:80px;border-radius:50%;
+  background:var(--card);position:absolute}
+.sn{font-size:24px;font-weight:800;position:relative;z-index:1;color:#fff}
+.rc h2{font-size:20px;font-weight:700;margin-bottom:6px;color:#fff}
+.rc>p{color:var(--muted);font-size:13px;margin-bottom:22px}
+.rl{text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.ri{padding:10px 13px;border-radius:10px;font-size:12px;line-height:1.5;border:1px solid}
+.ri.ok{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06)}
+.ri.fail{border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.06)}
+.ri .rlab{font-weight:600;display:block;margin-bottom:2px}
+.ri.ok .rlab{color:#6ee7b7}.ri.fail .rlab{color:#fca5a5}
+.ri .rans{color:var(--muted);font-size:11px}
+.br{width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.br.rev{background:linear-gradient(135deg,var(--wrong),#fb923c);
+  margin-bottom:10px;display:none}
+.br.rev.show{display:block}
+.repaso-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fb923c;background:rgba(251,146,60,.12);
+  border:1px solid rgba(251,146,60,.3);border-radius:99px;padding:3px 10px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html?v=20261101-1" class="back">← Volver al inicio</a>
+  <div class="eyebrow">Historia · Preguntas 1, 2 y 3</div>
+  <h1>🧩 Autonomías, Pacto Federal y Rosas</h1>
+  <div class="tag-row"><span class="tag">🏞️ Provincias</span><span class="tag">🤝 Pacto</span><span class="tag">🎗️ Rosas</span></div>
+  <p class="subtitle">12 preguntas · Basado en la guía y el material del profe</p>
+</header>
+<div class="pw">
+  <div class="pm"><span id="pt">Pregunta 1 de 12</span><span id="st">0 correctas</span></div>
+  <div class="pt"><div class="pf" id="pf" style="width:8%"></div></div>
+</div>
+<div class="card" id="qcard">
+  <div class="qn" id="qn">Pregunta 1</div>
+  <div class="qt" id="qt"></div>
+  <div class="opts" id="qo"></div>
+  <div class="fb" id="fb"></div>
+  <button class="bn" id="bn">Siguiente →</button>
+</div>
+<div class="results" id="res">
+  <div class="rc">
+    <div class="sr" id="sr"><span class="sn" id="sf"></span></div>
+    <h2 id="rt"></h2><p id="rs"></p>
+    <div class="rl" id="rl"></div>
+    <button class="br rev" id="brev" onclick="init(FALLIDAS)">🎯 Repasar mis errores</button>
+    <button class="br" id="bfull" onclick="init()">🔁 Intentar de nuevo</button>
+  </div>
+</div>
+<script>
+var Q=[{"q": "¿Qué provincias se separaron de Tucumán y declararon su independencia en 1820 y 1821?", "opts": ["Mendoza y San Juan, que eran parte de Cuyo", "Santa Fe y Entre Ríos, junto con Corrientes", "Corrientes y Misiones", "Santiago del Estero y Catamarca"], "ans": 3, "exp": "Santiago del Estero se separó en 1820 y Catamarca en 1821. La formación del país estuvo llena de idas y vueltas."}, {"q": "¿Qué intentó Bernabé Aráoz con la «República de Tucumán»?", "opts": ["Independizar a La Rioja del resto de las provincias", "Unir a Tucumán, Catamarca y Santiago del Estero", "Unir a todo el Litoral bajo el mando de Buenos Aires", "Anexar la provincia de Tucumán al Alto Perú"], "ans": 1, "exp": "Lo intentó entre 1819 y 1821, sin éxito. Ramírez ensayó algo parecido con la «República de Entre Ríos»."}, {"q": "¿Qué es un déficit fiscal, como el que tenían muchas provincias?", "opts": ["Cuando el puerto queda bloqueado por barcos extranjeros", "Cuando una provincia se queda sin ejército ni milicias", "Cuando el Estado recauda mucho más de lo que necesita gastar", "Cuando los gastos del Estado superan lo que recauda con impuestos"], "ans": 3, "exp": "La mayoría de las provincias no comerciaba lo suficiente como para cubrir sus gastos y vivía endeudada."}, {"q": "¿Por qué Corrientes pudo tener sus finanzas equilibradas durante unos años?", "opts": ["Porque recibía préstamos muy grandes de bancos ingleses", "Porque vendía plata de las minas del Potosí", "Porque protegía su producción local frente a lo importado", "Porque cobraba la aduana del único puerto de ultramar"], "ans": 2, "exp": "Tenía astilleros, yerba mate y tabaco, y el gobierno protegía esa economía de la competencia extranjera."}, {"q": "¿Cómo terminó la Liga Unitaria?", "opts": ["Se transformó en el Partido Autonomista Nacional", "Paz derrotó a Rosas y pasó a gobernar Buenos Aires", "Firmó la paz con el Brasil y se disolvió sola", "Paz cayó prisionero y la Liga se desmoronó"], "ans": 3, "exp": "López y Quiroga avanzaron sobre el interior. Hacia fines de 1831 casi todas las provincias estaban en manos de Rosas, Quiroga y López."}, {"q": "¿Qué nombre tomó la unión de las provincias que fueron adhiriendo al Pacto Federal?", "opts": ["Confederación Argentina", "República de Entre Ríos", "Liga de los Pueblos Libres", "Provincias Unidas de Sudamérica"], "ans": 0, "exp": "Con la adhesión de los gobiernos provinciales al pacto nació lo que se empezó a llamar Confederación Argentina."}, {"q": "En las negociaciones del pacto, ¿qué política defendió Rosas frente a Ferré?", "opts": ["El proteccionismo para el interior", "El librecambio comercial", "La libre navegación de los ríos", "La nacionalización de la Aduana"], "ans": 1, "exp": "Con el librecambio, Buenos Aires mantenía el dominio total del comercio exterior."}, {"q": "Al final, ¿quién manejó las relaciones exteriores de la Confederación?", "opts": ["La Comisión Representativa en Santa Fe", "Cada provincia, por su propia cuenta", "El gobernador de Buenos Aires", "Un Congreso nacional reunido en Córdoba"], "ans": 2, "exp": "Como la Comisión nunca funcionó, el Poder Ejecutivo de Buenos Aires reasumió las relaciones exteriores de toda la Confederación."}, {"q": "¿Qué únicas condiciones le puso la Sala a Rosas cuando le dio la suma del poder público?", "opts": ["Defender la religión católica y la Federación", "Convocar elecciones libres y liberar la prensa", "Renunciar al año y no tener ejército propio", "Dictar una constitución y repartir la Aduana"], "ans": 0, "exp": "La «causa de la Federación» era tan difusa que terminó sirviendo para concentrar todo el poder en Rosas."}, {"q": "¿Qué hacía la Sala de Representantes durante el segundo gobierno de Rosas?", "opts": ["Rosas la cerró en 1835 y no volvió a reunirse nunca más", "Elegía cada año a un gobernador distinto para la provincia", "Seguía, pero solo para renovarle cada año sus facultades", "Se convirtió en el principal grupo opositor a Rosas"], "ans": 2, "exp": "Como Rosas armaba la lista única, la Sala estaba llena de diputados afines."}, {"q": "¿Qué pasaba en las fiestas federales que organizaba el gobierno?", "opts": ["Se leían en voz alta los textos de la Generación del 37", "Se quemaban muñecos vestidos con frac y levita", "Se prohibía la música y el baile por respeto al gobernador", "Se colgaban banderas celestes en todas las casas de la ciudad"], "ans": 1, "exp": "Se hacían en la ciudad y en el campo, en fechas patrias, fiestas religiosas y carnavales, para recrear la lucha contra los unitarios."}, {"q": "¿Qué relación tuvo Rosas con las sociedades africanas de esclavos y libertos?", "opts": ["Lo apoyaban, y él las protegía a cambio de fidelidad", "Financiaban a los unitarios exiliados en Montevideo", "Eran las encargadas de cobrar impuestos en el puerto", "Estaban prohibidas y la Mazorca perseguía sus fiestas"], "ans": 0, "exp": "Rosas solía ir a sus celebraciones. Esas asociaciones tuvieron un papel importante en las movilizaciones a su favor."}];
+var ALL=Q,cur=0,score=0,ans=[],T=Q.length,FALLIDAS=[],repaso=false;
+function init(set){
+  var usar=(set&&set.length)?set:ALL;
+  repaso=usar.length<ALL.length;
+  Q=usar;T=Q.length;cur=0;score=0;ans=[];
+  document.getElementById('qcard').style.display='block';
+  document.getElementById('res').className='results';render()}
+function render(){
+  var q=Q[cur];
+  document.getElementById('qn').innerHTML=(repaso?'<span class="repaso-chip">🎯 Repaso de errores</span><br>':'')+'Pregunta '+(cur+1);
+  document.getElementById('qt').textContent=q.q;
+  document.getElementById('pt').textContent='Pregunta '+(cur+1)+' de '+T;
+  document.getElementById('st').textContent=score+(score!==1?' correctas':' correcta');
+  document.getElementById('pf').style.width=(Math.round((cur/T)*100)+8)+'%';
+  var fb=document.getElementById('fb');fb.className='fb';fb.innerHTML='';
+  document.getElementById('bn').className='bn';
+  var c=document.getElementById('qo');c.innerHTML='';
+  var L=['A','B','C','D'];
+  for(var i=0;i<q.opts.length;i++){(function(idx){
+    var b=document.createElement('button');b.className='opt';
+    b.innerHTML='<span class="ol">'+L[idx]+'</span><span>'+q.opts[idx]+'</span>';
+    b.addEventListener('click',function(){pick(idx)});c.appendChild(b);
+  })(i)}
+}
+function pick(idx){
+  var q=Q[cur];
+  var bs=document.querySelectorAll('.opt');
+  for(var i=0;i<bs.length;i++)bs[i].disabled=true;
+  var ok=idx===q.ans;if(ok)score++;
+  ans.push({q:q.q,chosen:idx,ans:q.ans,ok:ok,opts:q.opts});
+  bs[q.ans].className+=' correct';if(!ok)bs[idx].className+=' wrong';
+  var fb=document.getElementById('fb');
+  fb.innerHTML=ok?'✅ ¡Correcto! '+q.exp:'❌ Incorrecto. La correcta era: '+q.opts[q.ans]+'. '+q.exp;
+  fb.className='fb show '+(ok?'ok':'bad');
+  var bn=document.getElementById('bn');
+  bn.textContent=cur<T-1?'Siguiente →':'Ver resultados 🎉';bn.className='bn show';
+}
+document.getElementById('bn').addEventListener('click',function(){
+  cur++;if(cur<T)render();else showRes();
+});
+function showRes(){
+  document.getElementById('qcard').style.display='none';
+  document.getElementById('res').className='results show';
+  var pct=Math.round((score/T)*100);
+  document.getElementById('sr').style.setProperty('--pct',pct+'%');
+  document.getElementById('sf').textContent=score+'/'+T;
+  var ti,su;
+  if(score===T){ti=repaso?'¡Corregidas! 🌟':'¡Perfecto! 🌟';su=repaso?'Te salieron todas las que antes fallabas.':''+T+'/'+T+'. ¡Lo tenés clavado!'}
+  else if(score>=T*.8){ti='¡Muy bien! 💪';su='Casi todo bien. Repasá las que fallaste.'}
+  else if(score>=T*.6){ti='Bien, podés mejorar 📚';su='Más de la mitad bien. Vale repasar.'}
+  else{ti='A repasar 😅';su='No te preocupes, con otro repaso va a quedar. 💜'}
+  document.getElementById('rt').textContent=ti;document.getElementById('rs').textContent=su;
+  var rl=document.getElementById('rl');rl.innerHTML='';
+  FALLIDAS=[];
+  for(var i=0;i<ans.length;i++){
+    var a=ans[i];if(!a.ok)FALLIDAS.push(Q[i]);
+    var d=document.createElement('div');d.className='ri '+(a.ok?'ok':'fail');
+    var h='<span class="rlab">'+(a.ok?'✅':'❌')+' P'+(i+1)+': '+a.q+'</span>';
+    if(!a.ok)h+='<span class="rans">Tu respuesta: '+a.opts[a.chosen]+' · Correcta: '+a.opts[a.ans]+'</span>';
+    d.innerHTML=h;rl.appendChild(d);
+  }
+  var brev=document.getElementById('brev');
+  if(FALLIDAS.length){brev.className='br rev show';
+    brev.textContent='🎯 Repasar mis errores ('+FALLIDAS.length+')';}
+  else{brev.className='br rev';}
+  document.getElementById('bfull').textContent=repaso?'🔁 Hacer el examen completo':'🔁 Intentar de nuevo';
+  guardar();
+}
+try{var _b=document.querySelector('.back');
+    if(_b)_b.href='index.html?v='+Math.floor(Date.now()/864e5);}catch(e){}
+function guardar(){
+  if(repaso)return;                       // el repaso no cuenta como nota
+  try{
+    var k='lulu:'+location.pathname.split('/').pop().replace('.html','');
+    var p={};try{p=JSON.parse(localStorage.getItem(k))||{}}catch(e){}
+    localStorage.setItem(k,JSON.stringify({
+      total:ALL.length,
+      ultimo:score,
+      mejor:Math.max(p.mejor||0,score),
+      intentos:(p.intentos||0)+1,
+      fecha:new Date().toISOString().slice(0,10)
+    }));
+  }catch(e){}                              // si el navegador lo bloquea, sigue andando igual
+}
+init();
+</script>
+</body>
+</html>
