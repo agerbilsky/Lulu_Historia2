@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>⭐ Integrador 3 · Historia Lulú</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d1f;--card:#161628;--border:#2a2545;
+  --accent:#34d399;--accent2:#38bdf8;
+  --correct:#34d399;--wrong:#f87171;
+  --text:#ede9fe;--muted:#8b80a8;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent}
+body{display:flex;flex-direction:column;align-items:center;padding:20px 14px 60px}
+header{text-align:center;margin-bottom:22px;width:100%;max-width:480px}
+.back{display:inline-block;color:var(--accent);font-size:13px;font-weight:600;
+  text-decoration:none;margin-bottom:14px;padding:6px 14px;border-radius:99px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px}
+h1{font-size:clamp(24px,7vw,34px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:8px}
+.tag-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+.tag{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);
+  border-radius:99px;padding:3px 11px;font-size:11px;color:var(--accent);font-weight:600}
+.subtitle{color:var(--muted);font-size:12px;margin-top:4px}
+.pw{width:100%;max-width:480px;margin-bottom:16px}
+.pm{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}
+.pt{height:5px;background:var(--border);border-radius:99px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:99px;transition:width .4s ease}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:22px 18px;width:100%;max-width:480px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.qn{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.qt{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.45;margin-bottom:20px;color:#fff}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{background:transparent;border:1.5px solid var(--border);border-radius:13px;
+  padding:13px 14px;color:var(--text);font-family:inherit;font-size:14px;text-align:left;
+  cursor:pointer;display:flex;align-items:flex-start;gap:11px;line-height:1.45;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:border-color .15s,background .15s;width:100%}
+.opt:active:not(:disabled){background:rgba(255,255,255,0.05)}
+.ol{width:26px;height:26px;min-width:26px;border-radius:50%;background:var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+  transition:background .2s;flex-shrink:0}
+.opt.correct{border-color:var(--correct);background:rgba(52,211,153,.08)}
+.opt.correct .ol{background:var(--correct);color:#0d1f17}
+.opt.wrong{border-color:var(--wrong);background:rgba(248,113,113,.08)}
+.opt.wrong .ol{background:var(--wrong);color:#fff}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:13px;
+  line-height:1.55;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.25);color:#6ee7b7}
+.fb.bad{background:rgba(248,113,113,.09);border:1px solid rgba(248,113,113,.25);color:#fca5a5}
+.bn{margin-top:16px;width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;display:none;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.bn.show{display:block}
+.results{display:none;width:100%;max-width:480px}
+.results.show{display:block}
+.rc{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:36px 18px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.sr{width:110px;height:110px;border-radius:50%;
+  background:conic-gradient(var(--accent) var(--pct,0%),var(--border) 0);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative}
+.sr::before{content:'';width:80px;height:80px;border-radius:50%;
+  background:var(--card);position:absolute}
+.sn{font-size:24px;font-weight:800;position:relative;z-index:1;color:#fff}
+.rc h2{font-size:20px;font-weight:700;margin-bottom:6px;color:#fff}
+.rc>p{color:var(--muted);font-size:13px;margin-bottom:22px}
+.rl{text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.ri{padding:10px 13px;border-radius:10px;font-size:12px;line-height:1.5;border:1px solid}
+.ri.ok{border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06)}
+.ri.fail{border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.06)}
+.ri .rlab{font-weight:600;display:block;margin-bottom:2px}
+.ri.ok .rlab{color:#6ee7b7}.ri.fail .rlab{color:#fca5a5}
+.ri .rans{color:var(--muted);font-size:11px}
+.br{width:100%;padding:15px;border-radius:13px;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.br.rev{background:linear-gradient(135deg,var(--wrong),#fb923c);
+  margin-bottom:10px;display:none}
+.br.rev.show{display:block}
+.repaso-chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#fb923c;background:rgba(251,146,60,.12);
+  border:1px solid rgba(251,146,60,.3);border-radius:99px;padding:3px 10px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html?v=20261101-2" class="back">← Volver al inicio</a>
+  <div class="eyebrow">Historia · Integrador · Las 15 preguntas</div>
+  <h1>⭐ Integrador 3</h1>
+  <div class="tag-row"><span class="tag">📚 Preguntas 1 a 15</span><span class="tag">✅ Las clave</span></div>
+  <p class="subtitle">20 preguntas · Basado en la guía y el material del profe</p>
+</header>
+<div class="pw">
+  <div class="pm"><span id="pt">Pregunta 1 de 20</span><span id="st">0 correctas</span></div>
+  <div class="pt"><div class="pf" id="pf" style="width:8%"></div></div>
+</div>
+<div class="card" id="qcard">
+  <div class="qn" id="qn">Pregunta 1</div>
+  <div class="qt" id="qt"></div>
+  <div class="opts" id="qo"></div>
+  <div class="fb" id="fb"></div>
+  <button class="bn" id="bn">Siguiente →</button>
+</div>
+<div class="results" id="res">
+  <div class="rc">
+    <div class="sr" id="sr"><span class="sn" id="sf"></span></div>
+    <h2 id="rt"></h2><p id="rs"></p>
+    <div class="rl" id="rl"></div>
+    <button class="br rev" id="brev" onclick="init(FALLIDAS)">🎯 Repasar mis errores</button>
+    <button class="br" id="bfull" onclick="init()">🔁 Intentar de nuevo</button>
+  </div>
+</div>
+<script>
+var Q=[{"q": "¿Qué pasó en 1820 que dejó al Río de la Plata sin un gobierno central?", "opts": ["Se sancionó la Constitución nacional en la ciudad de Santa Fe", "El Imperio del Brasil invadió Buenos Aires y disolvió el Congreso", "Urquiza derrotó a Rosas en la batalla de Caseros y lo mandó al exilio", "Las fuerzas del Litoral vencieron al Directorio en la batalla de Cepeda"], "ans": 3, "exp": "En 1820, en Cepeda, Santa Fe y Entre Ríos vencieron al Directorio y se disolvió el poder central con sede en Buenos Aires."}, {"q": "¿Por qué Buenos Aires fue la provincia más beneficiada por la autonomía?", "opts": ["Tenía el puerto de ultramar y cobraba la aduana más rica de todas", "Recibía dinero de las otras provincias gracias a los pactos", "Tenía las minas de plata más grandes de todo el exvirreinato", "Era la única que no tenía que mantener milicias ni ejército"], "ans": 0, "exp": "Lo que cobraba la Aduana de Buenos Aires superaba la suma de los impuestos de todas las demás provincias juntas."}, {"q": "¿Contra quién se armó la alianza del Pacto Federal?", "opts": ["Contra el bloqueo de Francia e Inglaterra al puerto", "Contra la Liga Unitaria del general José María Paz", "Contra el Imperio del Brasil y su escuadra naval", "Contra Urquiza y el Ejército Grande de Entre Ríos"], "ans": 1, "exp": "La Liga Unitaria de Paz dominaba casi todo el interior. El Pacto Federal fue una alianza ofensiva y defensiva para frenarla."}, {"q": "¿Por qué era ambigua la cláusula del pacto que prometía un Congreso Constituyente?", "opts": ["Porque exigía que la aprobara antes el rey de España", "Porque prohibía que Corrientes mandara a sus diputados", "Porque no fijaba ni fechas ni plazos para reunirlo", "Porque decía que el Congreso se iba a reunir en Brasil"], "ans": 2, "exp": "Al no tener fecha, el Congreso se podía postergar para siempre, y eso fue lo que hizo Rosas."}, {"q": "¿Qué le otorgó la Sala de Representantes a Rosas en 1835?", "opts": ["Un mandato de un año, sin facultades especiales", "El título de presidente de la República Argentina", "La Aduana, a cambio de dictar una constitución", "La suma del poder público, es decir, poder sin límites"], "ans": 3, "exp": "Lo eligieron por 5 años con «toda la suma del poder público», por todo el tiempo que él creyera necesario."}, {"q": "¿Qué era la divisa punzó?", "opts": ["Una cinta roja obligatoria, símbolo de adhesión al federalismo", "Un impuesto que se les cobraba a los barcos en el puerto", "Una bandera celeste que usaban los unitarios en el exilio", "El uniforme oficial de los soldados del Ejército Grande"], "ans": 0, "exp": "Fue obligatoria desde 1832. Los varones la llevaban en el pecho o el sombrero, y las mujeres en el pelo."}, {"q": "¿Qué implicaba para Buenos Aires que se dictara una constitución?", "opts": ["Elegir sola al presidente sin los votos del interior", "Nacionalizar la Aduana y repartir sus ingresos entre todas", "Quedarse con más dinero de las provincias del interior", "Poder cerrarles los ríos a todos los barcos extranjeros"], "ans": 1, "exp": "Como dice Ternavasio, Buenos Aires quería «ser ciudad rectora sin pagar el costo de ser capital» y sin repartir sus recursos."}, {"q": "¿Qué era la Mazorca?", "opts": ["El tribunal que juzgaba a los jueces de paz rurales", "Un ejército unitario armado en Montevideo", "El periódico oficial que publicaba el gobierno de Rosas", "El brazo armado de la Sociedad Popular Restauradora"], "ans": 3, "exp": "Desde 1835 la Mazorca se encargaba de asesinatos y torturas, y casi todos sus miembros eran policías."}, {"q": "¿Cuál es la diferencia entre una federación y una confederación?", "opts": ["La federación tiene constitución y gobierno nacional; la confederación es una alianza por pactos", "La confederación tiene constitución y gobierno nacional; la federación es una alianza por pactos", "Son sinónimos: las dos palabras quieren decir exactamente lo mismo", "La confederación tiene un rey y la federación tiene un presidente"], "ans": 0, "exp": "En una confederación, cada Estado conserva su soberanía y solo delega algunas cosas, como las relaciones exteriores."}, {"q": "¿Qué declaró Urquiza en el Pronunciamiento?", "opts": ["Que la provincia de Corrientes quedaba disuelta", "Que Entre Ríos volvía a manejar sus relaciones exteriores", "Que Entre Ríos pasaba a formar parte del Imperio del Brasil", "Que Rosas quedaba nombrado presidente de por vida"], "ans": 1, "exp": "Entre Ríos «reasumía» las facultades que había delegado en Rosas, y podía tratar directamente con otros gobiernos del mundo."}, {"q": "¿Cuándo y dónde fue la batalla de Caseros?", "opts": ["En 1861, en el sur de la provincia de Santa Fe", "En mayo de 1851, en la provincia de Entre Ríos", "En febrero de 1852, a 30 km de Buenos Aires", "En 1845, en la Vuelta de Obligado sobre el Paraná"], "ans": 2, "exp": "La coalición ganó y Rosas fue derrocado definitivamente."}, {"q": "¿Cuál fue una consecuencia directa de Pavón?", "opts": ["Se volvió a firmar el Pacto Federal de 1831 sin cambios", "Buenos Aires se independizó para siempre del resto del país", "Se disolvió la Confederación y Mitre fue presidente en 1862", "Urquiza fue elegido presidente de todo el país unificado"], "ans": 2, "exp": "Pavón puso fin a cuatro décadas de fragmentación. Empezó la construcción del Estado nacional bajo liderazgo porteño."}, {"q": "¿Qué eran las montoneras?", "opts": ["Grupos de inmigrantes que fundaban colonias agrícolas", "Tropas irregulares de gente que seguía a un caudillo", "Barcos de guerra de la escuadra del Imperio del Brasil", "Regimientos profesionales del nuevo ejército nacional"], "ans": 1, "exp": "Eran formaciones militares regionales que apoyaban una causa o a un caudillo."}, {"q": "¿Qué países formaron la Triple Alianza?", "opts": ["Argentina, Brasil y Uruguay", "Brasil, Paraguay y Uruguay", "Argentina, Paraguay y Perú", "Argentina, Chile y Bolivia"], "ans": 0, "exp": "Se aliaron contra el Paraguay de Francisco Solano López."}, {"q": "¿De qué provincias actuales forman parte los territorios que la Argentina ganó en la Guerra del Paraguay?", "opts": ["Mendoza, San Juan y San Luis", "Neuquén, Río Negro y Chubut", "Misiones, Chaco y Formosa", "Salta, Jujuy y Tucumán"], "ans": 2, "exp": "Con la guerra se fueron definiendo los límites del país en el noreste."}, {"q": "¿Con qué objetivos se conquistaron los territorios indígenas?", "opts": ["Liberar a los pueblos originarios del dominio del gobierno chileno", "Abrir una ruta comercial directa entre Buenos Aires y el Paraguay", "Fundar colonias de inmigrantes en las ciudades más grandes del país", "Tierras para exportar, soberanía frente a Chile y control"], "ans": 3, "exp": "La ganadería de exportación necesitaba enormes extensiones de tierra, y además había conflictos limítrofes con Chile."}, {"q": "¿Qué fue la división internacional del trabajo?", "opts": ["Los países industriales fabricaban y América Latina daba materias primas", "Cada país producía todo lo que necesitaba, sin comerciar con nadie", "Los países latinoamericanos fabricaban las máquinas para Europa", "América Latina fabricaba manufacturas y Europa producía materias primas"], "ans": 0, "exp": "Argentina se especializó en alimentos y materias primas, y compraba productos industriales."}, {"q": "¿Por qué se llamaba «desierto» a la Patagonia y a la región pampeana?", "opts": ["Porque eran zonas sin agua en las que nadie podía vivir", "Porque así lo llamaban los propios pueblos originarios", "Porque era el nombre oficial de una provincia del sur", "Porque se mostraba vacío un territorio que estaba habitado"], "ans": 3, "exp": "Se llamaba «desierto» al territorio que estaba fuera del control del Estado. Se negaba que esos pueblos contaran."}, {"q": "¿Cuál fue la principal característica de la red ferroviaria?", "opts": ["Se concentraba casi entera en el sur, en la región de la Patagonia", "Su centralización: las vías iban hacia el puerto de Buenos Aires para exportar", "Unía todas las capitales provinciales entre sí, sin pasar por Buenos Aires", "Llegaba sobre todo a Chile y a Bolivia, para comerciar con el Pacífico"], "ans": 1, "exp": "La red tenía forma de abanico. No buscaba unir a las provincias entre sí, sino llevar los productos al puerto."}, {"q": "¿Cómo se llamaba la ley de 1876 que organizó la llegada de inmigrantes?", "opts": ["Ley de Residencia para expulsar extranjeros", "Ley 1420 de Educación Común y obligatoria", "Ley de Inmigración y Colonización (Ley Avellaneda)", "Ley de Federalización de Buenos Aires"], "ans": 2, "exp": "Ayudaba con los pasajes, el alojamiento al llegar, la búsqueda de trabajo y las colonias agrícolas."}];
+var ALL=Q,cur=0,score=0,ans=[],T=Q.length,FALLIDAS=[],repaso=false;
+function init(set){
+  var usar=(set&&set.length)?set:ALL;
+  repaso=usar.length<ALL.length;
+  Q=usar;T=Q.length;cur=0;score=0;ans=[];
+  document.getElementById('qcard').style.display='block';
+  document.getElementById('res').className='results';render()}
+function render(){
+  var q=Q[cur];
+  document.getElementById('qn').innerHTML=(repaso?'<span class="repaso-chip">🎯 Repaso de errores</span><br>':'')+'Pregunta '+(cur+1);
+  document.getElementById('qt').textContent=q.q;
+  document.getElementById('pt').textContent='Pregunta '+(cur+1)+' de '+T;
+  document.getElementById('st').textContent=score+(score!==1?' correctas':' correcta');
+  document.getElementById('pf').style.width=(Math.round((cur/T)*100)+8)+'%';
+  var fb=document.getElementById('fb');fb.className='fb';fb.innerHTML='';
+  document.getElementById('bn').className='bn';
+  var c=document.getElementById('qo');c.innerHTML='';
+  var L=['A','B','C','D'];
+  for(var i=0;i<q.opts.length;i++){(function(idx){
+    var b=document.createElement('button');b.className='opt';
+    b.innerHTML='<span class="ol">'+L[idx]+'</span><span>'+q.opts[idx]+'</span>';
+    b.addEventListener('click',function(){pick(idx)});c.appendChild(b);
+  })(i)}
+}
+function pick(idx){
+  var q=Q[cur];
+  var bs=document.querySelectorAll('.opt');
+  for(var i=0;i<bs.length;i++)bs[i].disabled=true;
+  var ok=idx===q.ans;if(ok)score++;
+  ans.push({q:q.q,chosen:idx,ans:q.ans,ok:ok,opts:q.opts});
+  bs[q.ans].className+=' correct';if(!ok)bs[idx].className+=' wrong';
+  var fb=document.getElementById('fb');
+  fb.innerHTML=ok?'✅ ¡Correcto! '+q.exp:'❌ Incorrecto. La correcta era: '+q.opts[q.ans]+'. '+q.exp;
+  fb.className='fb show '+(ok?'ok':'bad');
+  var bn=document.getElementById('bn');
+  bn.textContent=cur<T-1?'Siguiente →':'Ver resultados 🎉';bn.className='bn show';
+}
+document.getElementById('bn').addEventListener('click',function(){
+  cur++;if(cur<T)render();else showRes();
+});
+function showRes(){
+  document.getElementById('qcard').style.display='none';
+  document.getElementById('res').className='results show';
+  var pct=Math.round((score/T)*100);
+  document.getElementById('sr').style.setProperty('--pct',pct+'%');
+  document.getElementById('sf').textContent=score+'/'+T;
+  var ti,su;
+  if(score===T){ti=repaso?'¡Corregidas! 🌟':'¡Perfecto! 🌟';su=repaso?'Te salieron todas las que antes fallabas.':''+T+'/'+T+'. ¡Lo tenés clavado!'}
+  else if(score>=T*.8){ti='¡Muy bien! 💪';su='Casi todo bien. Repasá las que fallaste.'}
+  else if(score>=T*.6){ti='Bien, podés mejorar 📚';su='Más de la mitad bien. Vale repasar.'}
+  else{ti='A repasar 😅';su='No te preocupes, con otro repaso va a quedar. 💜'}
+  document.getElementById('rt').textContent=ti;document.getElementById('rs').textContent=su;
+  var rl=document.getElementById('rl');rl.innerHTML='';
+  FALLIDAS=[];
+  for(var i=0;i<ans.length;i++){
+    var a=ans[i];if(!a.ok)FALLIDAS.push(Q[i]);
+    var d=document.createElement('div');d.className='ri '+(a.ok?'ok':'fail');
+    var h='<span class="rlab">'+(a.ok?'✅':'❌')+' P'+(i+1)+': '+a.q+'</span>';
+    if(!a.ok)h+='<span class="rans">Tu respuesta: '+a.opts[a.chosen]+' · Correcta: '+a.opts[a.ans]+'</span>';
+    d.innerHTML=h;rl.appendChild(d);
+  }
+  var brev=document.getElementById('brev');
+  if(FALLIDAS.length){brev.className='br rev show';
+    brev.textContent='🎯 Repasar mis errores ('+FALLIDAS.length+')';}
+  else{brev.className='br rev';}
+  document.getElementById('bfull').textContent=repaso?'🔁 Hacer el examen completo':'🔁 Intentar de nuevo';
+  guardar();
+}
+try{var _b=document.querySelector('.back');
+    if(_b)_b.href='index.html?v='+Math.floor(Date.now()/864e5);}catch(e){}
+function guardar(){
+  if(repaso)return;                       // el repaso no cuenta como nota
+  try{
+    var k='lulu:'+location.pathname.split('/').pop().replace('.html','');
+    var p={};try{p=JSON.parse(localStorage.getItem(k))||{}}catch(e){}
+    localStorage.setItem(k,JSON.stringify({
+      total:ALL.length,
+      ultimo:score,
+      mejor:Math.max(p.mejor||0,score),
+      intentos:(p.intentos||0)+1,
+      fecha:new Date().toISOString().slice(0,10)
+    }));
+  }catch(e){}                              // si el navegador lo bloquea, sigue andando igual
+}
+init();
+</script>
+</body>
+</html>
